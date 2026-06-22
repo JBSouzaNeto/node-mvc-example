@@ -19,7 +19,7 @@ const AutorRepository = {
   }, 
 
   add : async (nome, nac) => {
-    const sql = 'INSERT INTO autor (nome, nacionalidade) VALUES ($1, $2) RETURNING *';
+    const sql = 'INSERT INTO autor (nome, nacionalidade) VALUES ($1, $2) RETURNING id, nome, nacionalidade';
     const values = [nome, nac];
     try {
       const res = await db.query(sql, values);
