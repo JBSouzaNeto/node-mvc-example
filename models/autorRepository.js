@@ -19,7 +19,7 @@ const AutorRepository = {
   }, 
 
   add : async (nome, nac) => {
-    const sql = 'INSERT INTO autor (nome, nacionalidade) VALUES ($1, $2) RETURNING id, nome, nacionalidade';
+    const sql = 'INSERT INTO autor (nome, nacionalidade) VALUES ($1, $2) RETURNING *';
     const values = [nome, nac];
     try {
       const res = await db.query(sql, values);
@@ -38,7 +38,7 @@ const AutorRepository = {
 
   delete : async (id) => {
     const sql = 'DELETE FROM autor WHERE id = $1';
-    await pool.query(sql, [id]);
+    await db.query(sql, [id]);
   }
 
 }
